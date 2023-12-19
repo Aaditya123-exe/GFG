@@ -4,42 +4,51 @@
 using namespace std;
 
 // } Driver Code Ends
-class Solution {
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+class Solution
+{
 public:
     int mod = 1e9 + 7;
-
-    long long int countPS(string s) {
+    long long int countPS(string s)
+    {
         int n = s.size();
         long long dp[n][n] = {{0}};
-
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             dp[i][i] = 1;
         }
-
-        for (int i = 0; i < n - 1; i++) {
-            if (s[i] == s[i + 1]) {
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (s[i] == s[i + 1])
+            {
                 dp[i][i + 1] = 3;
-            } else {
+            }
+            else
+            {
                 dp[i][i + 1] = 2;
             }
         }
-
-        for (int len = 3; len <= n; len++) {
-            for (int win = 0; win <= n - len; win++) {
+        for (int len = 3; len <= n; len++)
+        {
+            for (int win = 0; win <= n - len; win++)
+            {
                 int end = win + len - 1;
-
-                if (s[win] == s[end]) {
+                if (s[win] == s[end])
+                {
                     dp[win][end] = (1 + dp[win][end - 1] + dp[win + 1][end]) % mod;
-                } else {
+                }
+                else
+                {
                     dp[win][end] = (dp[win][end - 1] + dp[win + 1][end] - dp[win + 1][end - 1] + mod) % mod;
                 }
             }
         }
-
         return dp[0][n - 1] % mod;
     }
 };
-;
 
 //{ Driver Code Starts.
 // Driver program
