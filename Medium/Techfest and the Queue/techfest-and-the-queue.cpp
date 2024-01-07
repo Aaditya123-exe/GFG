@@ -17,7 +17,7 @@ public:
 	            cnt++;
 	            num/=2;
 	        }
-	        for(int j=3;j*j<=num;j+=2)
+	        for(int j=3;j*j<=i;j+=2)
 	        {
 	            while(num%j==0)
 	            {
