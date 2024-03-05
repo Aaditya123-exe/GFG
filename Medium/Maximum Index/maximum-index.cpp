@@ -7,44 +7,25 @@ using namespace std;
 
 class Solution{
     public:
-        
-    // A[]: input array
-    // N: size of array
-    // Function to find the maximum index difference.
     int maxIndexDiff(int a[], int n) 
     { 
-        vector<int>pre(n),post(n);
-        pre[0]=a[0];
-        int minpre=a[0];
-        for(int i=1;i<n;i++)
-        {
-            minpre=min(minpre,a[i]);
-            pre[i]=minpre;
-        }
-        int maxpost=a[n-1];
-        post[n-1]=a[n-1];
-        for(int i=n-2;i>=0;i--)
-        {
-            maxpost=max(maxpost,a[i]);
-            post[i]=maxpost;
-        }
-        int i=0,j=0;
-        int diff=0;
-        while(i<n&&j<n)
-        {
-            if(pre[i]<=post[j])
-            {
-                diff=max(diff,j-i);
-                j++;
-            }
-            else{
-                i++;
-            }
-        }
-        return diff;
-        
+        // Your code here
+        int mx=0;
+       for(int i=0;i<n-1;i++){
+           if(mx>n-i){
+               break;
+           }
+           for(int j=n-1;j>i;j--){
+               if(a[i]<=a[j]){
+                   mx=max(mx,j-i);
+                   break;
+               }
+           }
+       }
+       return mx;
     }
 };
+
 
 //{ Driver Code Starts.
   
